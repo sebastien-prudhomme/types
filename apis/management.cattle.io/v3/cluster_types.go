@@ -196,11 +196,20 @@ type AzureKubernetesServiceConfig struct {
 	TenantID string `json:"tenantId,omitempty" norman:"required"`
 	// Secret associated with the Client ID
 	ClientSecret string `json:"clientSecret,omitempty" norman:"required,type=password"`
+	// Virtual network to use for the AKS cluster
+	VirtualNetwork string `json:"virtualNetwork,omitempty"`
+	// Subnet to use for the AKS Cluster (must be within the virtual network)
+	Subnet string `json:"subnet,omitempty"`
 }
 
 type AmazonElasticContainerServiceConfig struct {
 	AccessKey string `json:"accessKey" norman:"required"`
 	SecretKey string `json:"secretKey" norman:"required,type=password"`
+
+	Region       string `json:"region"`
+	InstanceType string `json:"instanceType"`
+	MinimumNodes int    `json:"minimumNodes"`
+	MaximumNodes int    `json:"maximumNodes"`
 }
 
 type ClusterEvent struct {
